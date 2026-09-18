@@ -1,0 +1,69 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:To_Do_list"
+             x:Class="To_Do_list.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="#DDD8C4" />
+                <Setter Property="Padding" Value="20" />
+            </Style>
+
+
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Supreme" />
+                <Setter Property="TextColor" Value="#2C302E" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="Supreme" />
+                <Setter Property="BackgroundColor" Value="#690375" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="Padding" Value="14,8" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow Brush="#66000000" Radius="5" Offset="0,2" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="#2C302E" />
+                <Setter Property="PlaceholderColor" Value="#718F94" />
+                <Setter Property="FontFamily" Value="Supreme" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="0,5" />
+                <Setter Property="HeightRequest" Value="42" />
+            </Style>
+
+            <Style x:Key="collViewStyle" TargetType="CollectionView">
+                <Setter Property="BackgroundColor" Value="#B0D0D3" />
+                <Setter Property="Margin" Value="0,10" />
+                <Setter Property="SelectionMode" Value="Single" />
+            </Style>
+
+            <Style x:Key="TaskItemStyle" TargetType="Grid">
+                <Setter Property="Padding" Value="12" />
+                <Setter Property="Margin" Value="6,4" />
+                <Setter Property="BackgroundColor" Value="White" />
+                
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow Brush="#40000000" Radius="4" Offset="0,1" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

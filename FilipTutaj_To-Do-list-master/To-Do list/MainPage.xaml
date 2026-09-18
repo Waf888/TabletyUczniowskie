@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.Maui.Controls"
+             x:Class="To_Do_list.MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.1*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.33*" />
+            <ColumnDefinition Width="0.33*" />
+            <ColumnDefinition Width="0.33*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Nagłówek -->
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Text="Tablety"
+               Style="{StaticResource LabelStyle}"
+               FontSize="Large"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+
+        <Button Grid.Row="0"
+                Grid.Column="2"
+                Text="Completed"
+                Style="{StaticResource ButtonStyle}"
+                Clicked="Completed_Clicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+        <!-- Wpisywanie zadania -->
+        <Entry Grid.Row="1"
+               Grid.Column="0"
+               x:Name="AddTask"
+               Placeholder="Input task"
+               FontFamily="Supreme" />
+
+        <Entry Grid.Row="1"
+               Grid.Column="1"
+               x:Name="AddDescription"
+               Placeholder="Input description"
+               FontFamily="Supreme" />
+
+        <Button Grid.Row="1"
+                Grid.Column="2"
+                Style="{StaticResource ButtonStyle}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Clicked="Add_Clicked"
+                Text="Add Task" />
+
+        <!-- Lista zadań -->
+        <CollectionView ItemsSource="{Binding Tasks}"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="3"
+                        x:Name="wyswietl"
+                        SelectionMode="Single"
+                        Style="{StaticResource collViewStyle}"
+                        SelectionChanged="wyswietl_SelectionChanged">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,Auto"
+                          Padding="10">
+
+                        <Label Grid.Column="0"
+                               Text="{Binding Name}"
+                               VerticalOptions="Center" />
+
+                        <Button Grid.Column="1"
+                                Text="Done"
+                                Style="{StaticResource ButtonStyle}"
+                                Clicked="Done_Clicked"
+                                HorizontalOptions="End" />
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <!-- Opis zadania -->
+        <Label x:Name="wyswietl_opis"
+               Grid.Row="3"
+               Grid.ColumnSpan="3"
+               Text="Description"
+               Style="{StaticResource LabelStyle}"
+               FontSize="Large"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+
+        <!-- Przyciski -->
+        <Button Grid.Row="4"
+                Grid.Column="0"
+                x:Name="save"
+                Text="SAVE"
+                Clicked="save_Clicked"
+                Style="{StaticResource ButtonStyle}" />
+
+        <!-- NOWY PRZYCISK SKANERA -->
+        <Button Grid.Row="4"
+                Grid.Column="1"
+                x:Name="scan"
+                Text="SCAN"
+                Clicked="Scan_Clicked"
+                Style="{StaticResource ButtonStyle}" />
+
+        <Button Grid.Row="4"
+                Grid.Column="2"
+                x:Name="load"
+                Text="LOAD"
+                Clicked="load_Clicked"
+                Style="{StaticResource ButtonStyle}" />
+
+    </Grid>
+
+</ContentPage>

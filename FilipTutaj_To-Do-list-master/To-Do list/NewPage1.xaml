@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="To_Do_list.NewPage1"
+             Title="To-Do-List by Filip Tutaj">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"></RowDefinition>
+            <RowDefinition Height="0.75*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label 
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="Completed"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            Style="{StaticResource LabelStyle}"/>
+        <Button 
+            Grid.Row="0"
+            Grid.Column="1"
+            Text="Back" 
+            Style="{StaticResource ButtonStyle}" 
+            Clicked="Back_Clicked"
+            HorizontalOptions="Center" 
+            VerticalOptions="Center"/>
+        <CollectionView ItemsSource="{Binding Done}" 
+                    Grid.Row="1" 
+                    Grid.ColumnSpan="2"
+                    x:Name="wyswietl"
+                    SelectionMode="Single"
+                    Style="{StaticResource collViewStyle}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,*" Padding="10">
+                        <Label Grid.Column="0" Text="{Binding D_Name}" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" Text="{Binding D_Desc}" VerticalOptions="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

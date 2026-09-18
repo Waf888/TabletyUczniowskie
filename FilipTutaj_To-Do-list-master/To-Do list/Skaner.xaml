@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.Maui.Controls"
+             x:Class="To_Do_list.ScannerPage"
+             Title="Skanowanie">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.85*" />
+            <RowDefinition Height="0.15*" />
+        </Grid.RowDefinitions>
+
+        
+        <zxing:CameraBarcodeReaderView
+            x:Name="cameraView"
+            Grid.Row="0"
+            BarcodesDetected="CameraView_BarcodeDetected"
+            IsTorchOn="False"
+            IsDetecting="True" />
+
+        
+        <VerticalStackLayout
+            Grid.Row="1"
+            Padding="10"
+            HorizontalOptions="Center">
+
+            <Label
+                Text="Zeskanowany kod:"
+                HorizontalOptions="Center" />
+
+            <Label
+                x:Name="codeValue"
+                Text="Brak kodu"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>
