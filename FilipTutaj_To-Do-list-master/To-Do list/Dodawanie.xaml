@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="To_Do_list.Dodawanie"
+             Title="Dodawanie"
+             BackgroundColor="#ABD1B5">
+    <VerticalStackLayout>
+        <HorizontalStackLayout>
+        <Button
+            Clicked="Powrot_Clicked"
+            Text="Powrót"
+            BackgroundColor="#79B791"
+            TextColor="#EDF4ED"
+            WidthRequest="80"
+            HeightRequest="80"
+            />
+        </HorizontalStackLayout>
+        <Label Text="Tablety"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               FontSize="70"
+                           TextColor="#EDF4ED"/>
+        <Label/>
+
+        <Button x:Name="scan"
+                Text="SCAN"
+                FontSize="30"
+                WidthRequest="200"
+                Clicked="Scan_Clicked"
+                            BackgroundColor="#79B791"
+                            TextColor="#EDF4ED"/>
+
+        <Entry  x:Name="AddTask"
+                Placeholder="Kod QR"
+                WidthRequest="800"
+                PlaceholderColor="#EDF4ED"
+                HorizontalTextAlignment="Center"
+                FontSize="30"
+                FontFamily="Supreme"
+                            TextColor="#EDF4ED"/>
+        <Label/>
+
+        <Entry x:Name="AddDescription"
+               Placeholder="Wpisz Klase"
+               WidthRequest="200"
+               HorizontalTextAlignment="Center"
+               FontSize="30"
+               PlaceholderColor="#EDF4ED"
+               FontFamily="Supreme" 
+                           TextColor="#EDF4ED"/>
+        <Entry x:Name="AddDescription1"
+               Placeholder="Wpisz Numer"
+               WidthRequest="200"
+               FontSize="30"
+               HorizontalTextAlignment="Center"
+               PlaceholderColor="#EDF4ED"
+               FontFamily="Supreme" 
+                           TextColor="#EDF4ED"/>
+        <Label/>
+
+        <Button 
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Clicked="Add_Clicked"
+                Text="Dodaj Tablet"
+                FontSize="30"
+            WidthRequest="400"
+                        BackgroundColor="#79B791"
+                        TextColor="#EDF4ED"/>
+        
+        <CollectionView ItemsSource="{Binding Tasks}"
+                        x:Name="wyswietl"
+                        SelectionMode="Single"
+                        SelectionChanged="wyswietl_SelectionChanged">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,Auto"
+                          Padding="10">
+
+                        <Label Text="{Binding Name}"
+                               VerticalOptions="Center"
+                                           TextColor="#EDF4ED"/>
+
+                        <Button Text="Done"
+                                Clicked="Done_Clicked"
+                                HorizontalOptions="End"
+                                            TextColor="#EDF4ED"/>
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+        <Label x:Name="wyswietl_opis"
+       Text="Description"
+       FontSize="Large"
+       HorizontalOptions="Center"
+       VerticalOptions="Center" />
+
+
+
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="To_Do_list.Menu"
+             Title="Menu"
+             BackgroundColor="#ABD1B5"
+             >
+    
+    <VerticalStackLayout>
+        <Label 
+            Text="Czas Tabletów"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            TextColor="#EDF4ED"
+            FontSize="70"/>
+        <Button
+            Text="Start"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Clicked="Start_Clicked"
+            TextColor="#EDF4ED"
+            BackgroundColor="#79B791"
+            FontSize="50"
+            />
+        <Label/>
+        <Button
+            Text="Archiwum"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Clicked="Archiwum_Clicked"
+            TextColor="#EDF4ED"
+            BackgroundColor="#79B791"
+            FontSize="50"/>
+
+    </VerticalStackLayout>
+</ContentPage>
