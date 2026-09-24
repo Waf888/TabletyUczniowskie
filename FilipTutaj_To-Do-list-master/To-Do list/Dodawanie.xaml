@@ -5,9 +5,9 @@
              Title="Dodawanie"
              BackgroundColor="#ABD1B5">
     <ScrollView>
-    <VerticalStackLayout>
-        <HorizontalStackLayout>
-            <Button
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Button
             Clicked="Powrot_Clicked"
             Text="Powrót"
             BackgroundColor="#79B791"
@@ -15,24 +15,23 @@
             WidthRequest="80"
             HeightRequest="80"
             />
-            <Button
+                <Button
             Clicked="Archiwum_Clicked"
             Text="Archiwum"
             BackgroundColor="#79B791"
             TextColor="#EDF4ED"
             WidthRequest="120"
             HeightRequest="80"
-            HorizontalOptions="End"
             />
-        </HorizontalStackLayout>
-        <Label Text="Tablety"
+            </HorizontalStackLayout>
+            <Label Text="Tablety"
                HorizontalOptions="Center"
                VerticalOptions="Center"
                FontSize="70"
                            TextColor="#EDF4ED"/>
-        <Label/>
+            <Label/>
 
-        <Button x:Name="scan"
+            <Button x:Name="scan"
                 Text="SCAN"
                 FontSize="30"
                 WidthRequest="200"
@@ -40,7 +39,7 @@
                             BackgroundColor="#79B791"
                             TextColor="#EDF4ED"/>
 
-        <Entry  x:Name="AddTask"
+            <Entry  x:Name="AddTask"
                 Placeholder="Kod QR"
                 WidthRequest="800"
                 PlaceholderColor="#EDF4ED"
@@ -48,9 +47,9 @@
                 FontSize="30"
                 FontFamily="Supreme"
                             TextColor="#EDF4ED"/>
-        <Label/>
+            <Label/>
 
-        <Entry x:Name="AddDescription"
+            <Entry x:Name="AddDescription"
                Placeholder="Wpisz Klase"
                WidthRequest="200"
                HorizontalTextAlignment="Center"
@@ -58,7 +57,7 @@
                PlaceholderColor="#EDF4ED"
                FontFamily="Supreme" 
                            TextColor="#EDF4ED"/>
-        <Entry x:Name="AddDescription1"
+            <Entry x:Name="AddDescription1"
                Placeholder="Wpisz Numer"
                WidthRequest="200"
                FontSize="30"
@@ -66,9 +65,9 @@
                PlaceholderColor="#EDF4ED"
                FontFamily="Supreme" 
                            TextColor="#EDF4ED"/>
-        <Label/>
+            <Label/>
 
-        <Button 
+            <Button 
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Clicked="Add_Clicked"
@@ -78,42 +77,49 @@
                         BackgroundColor="#79B791"
                         TextColor="#EDF4ED"/>
 
-        <CollectionView ItemsSource="{Binding Tasks}"
+            <CollectionView ItemsSource="{Binding Tasks}"
                         x:Name="wyswietl"
                         BackgroundColor="#79B791"
+                        HeightRequest="300"
                         SelectionMode="Single"
-                        SelectionChanged="wyswietl_SelectionChanged">
+                        SelectionChanged="wyswietl_SelectionChanged"
+                            Margin="5">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid ColumnDefinitions="Auto,*,Auto"
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,Auto"
                           Padding="10">
 
-                        <Label Grid.Column="1"
-                               Text="{Binding Name}"
+                            <Label Text="{Binding Name}"
                                VerticalOptions="Center"
                                            TextColor="#EDF4ED"/>
 
-                        <Button Grid.Column="2"
+                            <Button Grid.Column="1"
                                 Text="Done"
                                 Clicked="Done_Clicked"
                                 HorizontalOptions="End"
                                             TextColor="#EDF4ED"/>
 
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-        </CollectionView>
-        <Label x:Name="wyswietl_opis"
-       Text="Description"
-       FontSize="Large"
-       HorizontalOptions="Center"
-       VerticalOptions="Center" />
+            </CollectionView>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label x:Name="wyswietl_opis"
+                   Text="Description"
+                   FontSize="Large"
+                   TextColor="#EDF4ED"/>
+                <Label Text="  "/>
+                <Label x:Name="wyswietl_numer"
+                   Text=""
+                   FontSize="Large"
+                   TextColor="#EDF4ED"/>
+            </HorizontalStackLayout>
 
 
 
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

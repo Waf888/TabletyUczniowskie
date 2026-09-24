@@ -22,36 +22,37 @@
             HorizontalOptions="Center"
             TextColor="#EDF4ED"/>
 
-        <Grid ColumnDefinitions="Auto,*,*,Auto,Auto"
-              Padding="10,10,10,0">
-            <Label Text="Kod QR"
+        <Grid ColumnDefinitions="70,110,110,150,150"
+              BackgroundColor="#5C9770"
+              Padding="10,8"
+              Margin="10,10,10,0">
+            <Label Text="Numer"
                    FontAttributes="Bold"
-                   TextColor="#EDF4ED"
-                   Margin="5"/>
+                   TextColor="#EDF4ED"/>
             <Label Grid.Column="1"
-                   Text="Numer"
+                   Text="Kod QR"
                    FontAttributes="Bold"
-                   TextColor="#EDF4ED"
-                   Margin="5"/>
+                   TextColor="#EDF4ED"/>
             <Label Grid.Column="2"
                    Text="Klasa"
                    FontAttributes="Bold"
-                   TextColor="#EDF4ED"
-                   Margin="5"/>
+                   TextColor="#EDF4ED"/>
             <Label Grid.Column="3"
                    Text="Rozpoczęto"
                    FontAttributes="Bold"
-                   TextColor="#EDF4ED"
-                   Margin="5"/>
+                   TextColor="#EDF4ED"/>
             <Label Grid.Column="4"
                    Text="Zakończono"
                    FontAttributes="Bold"
-                   TextColor="#EDF4ED"
-                   Margin="5"/>
+                   TextColor="#EDF4ED"/>
         </Grid>
 
         <CollectionView ItemsSource="{Binding Done_Tasks}"
-                        BackgroundColor="#79B791">
+                        BackgroundColor="#ABD1B5"
+                        Margin="10,0,10,10">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="6"/>
+            </CollectionView.ItemsLayout>
             <CollectionView.EmptyView>
                 <Label Text="Brak ukończonych zadań."
                        HorizontalOptions="Center"
@@ -60,28 +61,40 @@
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid ColumnDefinitions="Auto,*,*,Auto,Auto"
-                          Padding="10">
-                        <Label Text="{Binding D_Name}"
-                               TextColor="#EDF4ED"
-                               Margin="5"/>
-                        <Label Grid.Column="1"
-                               Text="{Binding D_Number}"
-                               TextColor="#EDF4ED"
-                               Margin="5"/>
-                        <Label Grid.Column="2"
-                               Text="{Binding D_Desc}"
-                               TextColor="#EDF4ED"
-                               Margin="5"/>
-                        <Label Grid.Column="3"
-                               Text="{Binding D_StartText}"
-                               TextColor="#EDF4ED"
-                               Margin="5"/>
-                        <Label Grid.Column="4"
-                               Text="{Binding D_EndText}"
-                               TextColor="#EDF4ED"
-                               Margin="5"/>
-                    </Grid>
+                    <Border BackgroundColor="#79B791"
+                            Padding="10,8"
+                            StrokeThickness="1"
+                            Stroke="#5C9770">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6"/>
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="70,110,110,150,150"
+                              ColumnSpacing="4">
+                            <Label Text="{Binding D_Number}"
+                                   VerticalOptions="Center"
+                                   TextColor="#EDF4ED"/>
+                            <Label Grid.Column="1"
+                                   Text="{Binding D_Name}"
+                                   LineBreakMode="TailTruncation"
+                                   VerticalOptions="Center"
+                                   TextColor="#EDF4ED"/>
+                            <Label Grid.Column="2"
+                                   Text="{Binding D_Desc}"
+                                   LineBreakMode="TailTruncation"
+                                   VerticalOptions="Center"
+                                   TextColor="#EDF4ED"/>
+                            <Label Grid.Column="3"
+                                   Text="{Binding D_StartText}"
+                                   FontSize="13"
+                                   VerticalOptions="Center"
+                                   TextColor="#EDF4ED"/>
+                            <Label Grid.Column="4"
+                                   Text="{Binding D_EndText}"
+                                   FontSize="13"
+                                   VerticalOptions="Center"
+                                   TextColor="#EDF4ED"/>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

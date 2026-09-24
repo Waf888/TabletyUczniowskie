@@ -43,7 +43,8 @@ public partial class Dodawanie : ContentPage
         });
 
         wyswietl.ItemsSource = Tasks;
-        wyswietl_opis.Text = opis + " " + numer;
+        wyswietl_opis.Text = opis;
+        wyswietl_numer.Text = numer;
     }
     private void Done_Clicked(object sender, EventArgs e)
     {
@@ -69,6 +70,7 @@ public partial class Dodawanie : ContentPage
 
         wyswietl.ItemsSource = Tasks;
         wyswietl_opis.Text = "Description";
+        wyswietl_numer.Text = "";
     }
 
 
@@ -81,7 +83,8 @@ public partial class Dodawanie : ContentPage
         if (selected == null)
         {
             wyswietl_opis.Text =
-                "Nie wybrano żadnego zadania.";
+                "Nie wybrano �adnego zadania.";
+            wyswietl_numer.Text = "";
 
             return;
         }
@@ -90,7 +93,8 @@ public partial class Dodawanie : ContentPage
 
         if (task != null)
         {
-            wyswietl_opis.Text = $"{task.Description} {task.Number}";
+            wyswietl_opis.Text = task.Description;
+            wyswietl_numer.Text = task.Number;
         }
     }
 
