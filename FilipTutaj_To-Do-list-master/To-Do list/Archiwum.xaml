@@ -22,5 +22,69 @@
             HorizontalOptions="Center"
             TextColor="#EDF4ED"/>
 
+        <Grid ColumnDefinitions="Auto,*,*,Auto,Auto"
+              Padding="10,10,10,0">
+            <Label Text="Kod QR"
+                   FontAttributes="Bold"
+                   TextColor="#EDF4ED"
+                   Margin="5"/>
+            <Label Grid.Column="1"
+                   Text="Numer"
+                   FontAttributes="Bold"
+                   TextColor="#EDF4ED"
+                   Margin="5"/>
+            <Label Grid.Column="2"
+                   Text="Klasa"
+                   FontAttributes="Bold"
+                   TextColor="#EDF4ED"
+                   Margin="5"/>
+            <Label Grid.Column="3"
+                   Text="Rozpoczęto"
+                   FontAttributes="Bold"
+                   TextColor="#EDF4ED"
+                   Margin="5"/>
+            <Label Grid.Column="4"
+                   Text="Zakończono"
+                   FontAttributes="Bold"
+                   TextColor="#EDF4ED"
+                   Margin="5"/>
+        </Grid>
+
+        <CollectionView ItemsSource="{Binding Done_Tasks}"
+                        BackgroundColor="#79B791">
+            <CollectionView.EmptyView>
+                <Label Text="Brak ukończonych zadań."
+                       HorizontalOptions="Center"
+                       TextColor="#EDF4ED"
+                       FontSize="20"/>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto,*,*,Auto,Auto"
+                          Padding="10">
+                        <Label Text="{Binding D_Name}"
+                               TextColor="#EDF4ED"
+                               Margin="5"/>
+                        <Label Grid.Column="1"
+                               Text="{Binding D_Number}"
+                               TextColor="#EDF4ED"
+                               Margin="5"/>
+                        <Label Grid.Column="2"
+                               Text="{Binding D_Desc}"
+                               TextColor="#EDF4ED"
+                               Margin="5"/>
+                        <Label Grid.Column="3"
+                               Text="{Binding D_StartText}"
+                               TextColor="#EDF4ED"
+                               Margin="5"/>
+                        <Label Grid.Column="4"
+                               Text="{Binding D_EndText}"
+                               TextColor="#EDF4ED"
+                               Margin="5"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
     </VerticalStackLayout>
 </ContentPage>

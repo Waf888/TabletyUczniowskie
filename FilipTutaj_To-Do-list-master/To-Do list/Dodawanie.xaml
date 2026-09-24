@@ -4,15 +4,25 @@
              x:Class="To_Do_list.Dodawanie"
              Title="Dodawanie"
              BackgroundColor="#ABD1B5">
+    <ScrollView>
     <VerticalStackLayout>
         <HorizontalStackLayout>
-        <Button
+            <Button
             Clicked="Powrot_Clicked"
             Text="Powrót"
             BackgroundColor="#79B791"
             TextColor="#EDF4ED"
             WidthRequest="80"
             HeightRequest="80"
+            />
+            <Button
+            Clicked="Archiwum_Clicked"
+            Text="Archiwum"
+            BackgroundColor="#79B791"
+            TextColor="#EDF4ED"
+            WidthRequest="120"
+            HeightRequest="80"
+            HorizontalOptions="End"
             />
         </HorizontalStackLayout>
         <Label Text="Tablety"
@@ -67,22 +77,25 @@
             WidthRequest="400"
                         BackgroundColor="#79B791"
                         TextColor="#EDF4ED"/>
-        
+
         <CollectionView ItemsSource="{Binding Tasks}"
                         x:Name="wyswietl"
+                        BackgroundColor="#79B791"
                         SelectionMode="Single"
                         SelectionChanged="wyswietl_SelectionChanged">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid ColumnDefinitions="*,Auto"
+                    <Grid ColumnDefinitions="Auto,*,Auto"
                           Padding="10">
 
-                        <Label Text="{Binding Name}"
+                        <Label Grid.Column="1"
+                               Text="{Binding Name}"
                                VerticalOptions="Center"
                                            TextColor="#EDF4ED"/>
 
-                        <Button Text="Done"
+                        <Button Grid.Column="2"
+                                Text="Done"
                                 Clicked="Done_Clicked"
                                 HorizontalOptions="End"
                                             TextColor="#EDF4ED"/>
@@ -102,4 +115,5 @@
 
 
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -6,15 +6,14 @@ namespace To_Do_list;
 
 public partial class Dodawanie : ContentPage
 {
-    ObservableCollection<Task> Tasks { get; set; }
-    ObservableCollection<Done> Done_Tasks { get; set; }
+    private static readonly ObservableCollection<Task> _tasks = new();
+    public ObservableCollection<Task> Tasks => _tasks;
+    public static ObservableCollection<Done> Done_Tasks { get; } = new();
     private string filePath =
     Path.Combine(FileSystem.AppDataDirectory, "tasks.json");
     public Dodawanie()
-	{
-		InitializeComponent();
-        Tasks = new ObservableCollection<Task>();
-        Done_Tasks = new ObservableCollection<Done>();
+    {
+        InitializeComponent();
 
         BindingContext = this;
     }
@@ -22,24 +21,29 @@ public partial class Dodawanie : ContentPage
     {
         string nazwa = AddTask.Text;
         string opis = AddDescription.Text;
+        string numer = AddDescription1.Text;
 
         if (string.IsNullOrEmpty(nazwa) ||
-            string.IsNullOrEmpty(opis))
+            string.IsNullOrEmpty(opis) ||
+            string.IsNullOrEmpty(numer))
         {
             return;
         }
 
         AddTask.Text = "";
         AddDescription.Text = "";
+        AddDescription1.Text = "";
 
         Tasks.Add(new Task
         {
             Name = nazwa,
-            Description = opis
+            Description = opis,
+            Number = numer,
+            StartTime = DateTime.Now
         });
 
         wyswietl.ItemsSource = Tasks;
-        wyswietl_opis.Text = opis;
+        wyswietl_opis.Text = opis + " " + numer;
     }
     private void Done_Clicked(object sender, EventArgs e)
     {
@@ -57,7 +61,10 @@ public partial class Dodawanie : ContentPage
         Done_Tasks.Add(new Done
         {
             D_Name = task.Name,
-            D_Desc = task.Description
+            D_Desc = task.Description,
+            D_Number = task.Number,
+            D_Start = task.StartTime,
+            D_End = DateTime.Now
         });
 
         wyswietl.ItemsSource = Tasks;
@@ -74,7 +81,7 @@ public partial class Dodawanie : ContentPage
         if (selected == null)
         {
             wyswietl_opis.Text =
-                "Nie wybrano �adnego zadania.";
+                "Nie wybrano żadnego zadania.";
 
             return;
         }
@@ -83,7 +90,7 @@ public partial class Dodawanie : ContentPage
 
         if (task != null)
         {
-            wyswietl_opis.Text = task.Description;
+            wyswietl_opis.Text = $"{task.Description} {task.Number}";
         }
     }
 
@@ -92,8 +99,13 @@ public partial class Dodawanie : ContentPage
         await Navigation.PushAsync(new ScannerPage(AddTask));
     }
 
-    private void Powrot_Clicked(object sender, EventArgs e)
+    private async void Powrot_Clicked(object sender, EventArgs e)
     {
-        
+        await Navigation.PopAsync();
+    }
+
+    private async void Archiwum_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Archiwum());
     }
 }
