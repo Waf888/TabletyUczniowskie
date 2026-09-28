@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SQLite;
 
 namespace To_Do_list
 {
     public class Done
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
         public string? D_Name { get; set; }
         public string? D_Desc { get; set; }
         public string? D_Number { get; set; }

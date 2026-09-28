@@ -9,6 +9,8 @@ public partial class Dodawanie : ContentPage
     private static readonly ObservableCollection<Task> _tasks = new();
     public ObservableCollection<Task> Tasks => _tasks;
     public static ObservableCollection<Done> Done_Tasks { get; } = new();
+    private static readonly DatabaseService _db = new();
+    private static bool _archiwumWczytane = false;
     private string filePath =
     Path.Combine(FileSystem.AppDataDirectory, "tasks.json");
     public Dodawanie()
@@ -16,6 +18,26 @@ public partial class Dodawanie : ContentPage
         InitializeComponent();
 
         BindingContext = this;
+
+        WczytajArchiwum();
+    }
+
+    // Wczytuje zarchiwizowane zadania z pliku bazy danych (tylko raz na start aplikacji).
+    private async void WczytajArchiwum()
+    {
+        if (_archiwumWczytane)
+        {
+            return;
+        }
+
+        _archiwumWczytane = true;
+
+        var zapisane = await _db.GetDoneTasksAsync();
+
+        foreach (var zadanie in zapisane)
+        {
+            Done_Tasks.Add(zadanie);
+        }
     }
     private void Add_Clicked(object sender, EventArgs e)
     {
@@ -59,14 +81,19 @@ public partial class Dodawanie : ContentPage
 
         Tasks.Remove(task);
 
-        Done_Tasks.Add(new Done
+        var zakonczone = new Done
         {
             D_Name = task.Name,
             D_Desc = task.Description,
             D_Number = task.Number,
             D_Start = task.StartTime,
             D_End = DateTime.Now
-        });
+        };
+
+        Done_Tasks.Add(zakonczone);
+
+        // Zapisz zarchiwizowane zadanie także do pliku bazy danych.
+        _ = _db.AddDoneTaskAsync(zakonczone);
 
         wyswietl.ItemsSource = Tasks;
         wyswietl_opis.Text = "Description";
@@ -83,7 +110,7 @@ public partial class Dodawanie : ContentPage
         if (selected == null)
         {
             wyswietl_opis.Text =
-                "Nie wybrano �adnego zadania.";
+                "Nie wybrano żadnego zadania.";
             wyswietl_numer.Text = "";
 
             return;
